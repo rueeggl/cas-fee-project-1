@@ -61,6 +61,7 @@ button, .theme-selection {
     text-decoration: none;
     color: var(--primary-color);
     text-align: center;
+    -moz-appearance: none;
 }
 button:hover {
     background-color: var(--secondary-color-light);
