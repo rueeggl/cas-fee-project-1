@@ -87,10 +87,17 @@ footer {
     align-items: center;
     justify-content: center;
   }
-  .icons .fab {
+  .icons a {
     margin: 0.5rem;
+    color: var(--white);
+    text-decoration: none;
   }
-  .icons .fab:hover{
+  .icons a:hover{
     color: var(--secondary-color-light);
+  }
+  span {
+    font-size: 0.75rem;
+    font-style: italic;
+    margin-left: 2rem;
   }
  
