@@ -1,6 +1,6 @@
 Die Vorlage beinhaltet CSS/HTML/JS-Linter. Diese sind konfiguriert. 
 
-Für eine Live Demo besuche: https://rueeggl.github.io/cas-fee-project-1/
+`:star_struck:` Für eine Live Demo besuche: https://rueeggl.github.io/cas-fee-project-1/ `:star_struck:`
 
 Getting Started
 1. Entzippen von der Vorlage.

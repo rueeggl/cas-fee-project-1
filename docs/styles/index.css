@@ -9,15 +9,19 @@
     --secondary-color-light: #6e91f6;
     --primary-color-dark: #331942;
     --secondary-color-dark: #202c4e;
+    --background-color-light: #ffffff;
+    --background-color-dark: #000000;
     --white: #ffffff;
 }
 .light-theme{
     --primary-color: var(--primary-color-light);
     --secondary-color: var(--secondary-color-light);
+    --background-color: var(--background-color-light)
 }
 .dark-theme {
     --primary-color: var(--primary-color-dark);
     --secondary-color: var(--secondary-color-dark);
+    --background-color: var(--background-color-dark)
 }
 h1 {
     padding-top: 1rem;
@@ -66,6 +70,8 @@ button:hover {
     justify-content: center;
     align-items: center;
     display: flex;
+    height: 75vh; 
+    background-color: var(--background-color);
 }
 footer {
     background-image: linear-gradient(102deg, var(--primary-color) 0%, var(--secondary-color-light));
