@@ -1,5 +1,7 @@
 Die Vorlage beinhaltet CSS/HTML/JS-Linter. Diese sind konfiguriert. 
 
+Für eine Live Demo besuche: https://rueeggl.github.io/cas-fee-project-1/
+
 Getting Started
 1. Entzippen von der Vorlage.
 2. Installieren Sie die Dependencies der Vorlage
@@ -9,10 +11,10 @@ Getting Started
    - Erwarte Ausgabe: 1 Warnungen und «npm run all completed»
 4. Woche 1
    - HTML Gerüst erstellen für die Wireframes und Beginn CSS:
-      - /public/index.html
-      - /public/styles/index.css
+      - /docs/index.html
+      - /docs/styles/index.css
    - Webstorm:
-      - /public/index.html "ausführen".
+      - /docs/index.html "ausführen".
    - Visual Studio Code:
       - Live Server nutzen: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer    
 
