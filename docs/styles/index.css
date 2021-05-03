@@ -84,6 +84,7 @@ button:hover {
 .todo-card {
     display: flex;
     width: 100%;
+    height: 25%;
     color: var(--content-color);
     box-shadow: 0.25rem 0.25rem 0.6rem rgba(100, 100, 100, 0.2);
 }
@@ -102,6 +103,9 @@ button:hover {
 .todo-content {
     width: 50%;
     margin-right: 2rem;
+}
+.todo-content-txtarea {
+    height: 50%;
 }
 .todo-edit-btn {
     display: flex;
@@ -147,6 +151,7 @@ footer {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
+    height: 100%;
     border-radius: 0.3rem;
     margin-bottom: 1rem;
     border:0.16rem groove rgba(255,255,255,0.7); 
