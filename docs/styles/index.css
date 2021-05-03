@@ -12,16 +12,19 @@
     --background-color-light: #ffffff;
     --background-color-dark: #000000;
     --white: #ffffff;
+    --black: #000000
 }
 .light-theme{
     --primary-color: var(--primary-color-light);
     --secondary-color: var(--secondary-color-light);
-    --background-color: var(--background-color-light)
+    --background-color: var(--background-color-light);
+    --content-color: var(--black);
 }
 .dark-theme {
     --primary-color: var(--primary-color-dark);
     --secondary-color: var(--secondary-color-dark);
-    --background-color: var(--background-color-dark)
+    --background-color: var(--background-color-dark);
+    --content-color: var(--white);
 }
 h1 {
     padding-top: 1rem;
@@ -64,18 +67,56 @@ button, .theme-selection {
     -moz-appearance: none;
 }
 button:hover {
-    background-color: var(--secondary-color-light);
+    background-color: var(--secondary-color);
+    opacity: 0.6;
 }
 .content_wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     display: flex;
-    height: 75vh; 
+    height: 80vh; 
     background-color: var(--background-color);
+    padding: 1rem;
+
+}
+.todo-card {
+    display: flex;
+    width: 100%;
+    color: var(--content-color);
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(100, 100, 100, 0.2);
+}
+.todo-due-date {
+    width: 25%;
+    margin-right: 2rem;
+    margin-left: 1rem;
+}
+.todo-title {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+.todo-title .bold {
+    font-weight: 400;
+}
+.todo-content {
+    width: 50%;
+    margin-right: 2rem;
+}
+.todo-edit-btn {
+    display: flex;
+    align-items: center;
+}
+.todo-edit-btn a{
+    width: 25%;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+.todo-edit-btn a:hover {
+    color: var(--secondary-color);
 }
 footer {
-    background-image: linear-gradient(102deg, var(--primary-color) 0%, var(--secondary-color-light));
+    background-image: linear-gradient(102deg, var(--primary-color) 0%, var(--secondary-color));
     position: fixed;
     left: 0;
     bottom: 0;
@@ -87,17 +128,27 @@ footer {
     align-items: center;
     justify-content: center;
   }
-  .icons a {
+  .social-media-icons a {
     margin: 0.5rem;
     color: var(--white);
     text-decoration: none;
   }
-  .icons a:hover{
-    color: var(--secondary-color-light);
+  .social-media-icons a:hover{
+    color: var(--secondary-color);
   }
   span {
     font-size: 0.75rem;
     font-style: italic;
     margin-left: 2rem;
+  }
+  textarea { 
+    resize: none; 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    border:0.16rem groove rgba(255,255,255,0.7); 
   }
  
