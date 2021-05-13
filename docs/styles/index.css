@@ -205,14 +205,16 @@ span {
     width: 50%;
     margin: 1rem;
     display: flex;
-    justify-content: space-between;
 }
 .description {
     height: 20%;
 }
+#duedate {
+  width: 20%;
+}
 .label {
     width: 20%;
-    margin-right: 4rem;
+    margin-right: 1rem;
 }
 .input {
     width: 80%;
