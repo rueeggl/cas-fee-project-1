@@ -8,6 +8,7 @@
     defer
   ></script>
   <script src="scripts/index.js" type="module"></script>
+  <script src="scripts/notes.js"></script>
   <link
     rel="stylesheet"
     href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
@@ -20,7 +21,7 @@
   <header>
     <h1>Note App</h1>
   </header>
-  <form class="form">
+  <form class="form" method="GET">
     <div class="title">
       <label class="label" for="title">Title</label>
       <input class="input" type="text" id="title" name="title" />
@@ -49,7 +50,7 @@
       <input class="input" type="date" id="duedate" name="duedate" />
     </div>
     <div class="buttons">
-      <button type="submit">Save</button>
+      <button type="submit" onclick="test()">Save</button>
       <button type="button">Cancel</button>
     </div>
   </form>

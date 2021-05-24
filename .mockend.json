@@ -1,0 +1,9 @@
+{
+    "note": {
+        "title": "string",
+        "importance": "int", 
+        "created": "date", 
+        "duedate": "date", 
+        "finished": "boolean"
+    }
+}
