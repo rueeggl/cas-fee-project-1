@@ -1,203 +1,227 @@
 * {
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    margin: 0;
 }
 
-/*************/
-/* Variables */
-/*************/
+/**
+ * Variables
+ */
 :root {
-  --primary-color-light: #c468ff;
-  --secondary-color-light: #6e91f6;
-  --primary-color-dark: #331942;
-  --secondary-color-dark: #202c4e;
-  --white: #ffffff;
-  --black: #000000;
-  --border: 0.16rem groove rgba(255, 255, 255, 0.7)
+    --primary-color-light: #c468ff;
+    --secondary-color-light: #6e91f6;
+    --primary-color-dark: #331942;
+    --secondary-color-dark: #202c4e;
+    --white: #fff;
+    --black: #000;
+    --border: 0.16rem groove rgba(255, 255, 255, 0.7);
 }
 
-/*********/
-/* Theme */
-/*********/
+/**
+ * Theme
+ */
 .light-theme {
-  --primary-color: var(--primary-color-light);
-  --secondary-color: var(--secondary-color-light);
+    --primary-color: var(--primary-color-light);
+    --secondary-color: var(--secondary-color-light);
 }
+
 .dark-theme {
-  --primary-color: var(--primary-color-dark);
-  --secondary-color: var(--secondary-color-dark);
+    --primary-color: var(--primary-color-dark);
+    --secondary-color: var(--secondary-color-dark);
 }
 
-/**********/
-/* Header */
-/**********/
+/**
+ * Header
+ */
 h1 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  font-weight: 400;
-  color: var(--white);
-  text-align: center;
-}
-header {
-  background-image: linear-gradient(
-    102deg,
-    var(--primary-color) 0%,
-    var(--secondary-color-light)
-  );
-}
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: 400;
+    color: var(--white);
+    text-align: center;
 }
 
-/**********/
-/* Filter */
-/**********/
+header {
+    background-image:
+        linear-gradient(
+            102deg,
+            var(--primary-color) 0%,
+            var(--secondary-color-light)
+        );
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+/**
+ * Filter
+ */
 .filter {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
 }
+
 .filter-left {
-  width: 60%;
-  display: flex;
-  justify-content: space-between;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
 }
-.filter-left button {
-  width: 15rem;
-}
+
 button,
 .theme-selection {
-  display: inline-block;
-  padding: 0.3em 1.2em;
-  margin: 0 0.1em 0.1em 0;
-  border: 0.16em solid rgba(255, 255, 255, 0.2);
-  border-radius: 2em;
-  box-sizing: border-box;
-  text-decoration: none;
-  color: var(--primary-color);
-  text-align: center;
-  -moz-appearance: none;
+    display: inline-block;
+    padding: 0.3em 1.2em;
+    margin: 0 0.1em 0.1em 0;
+    border: 0.16em solid rgba(255, 255, 255, 0.2);
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: var(--primary-color);
+    text-align: center;
+    -moz-appearance: none;
 }
+
+.filter-left button {
+    width: 15rem;
+}
+
 button:hover {
-  opacity: 0.6;
+    opacity: 0.6;
 }
 
-/***********/
-/* Content */
-/***********/
+/**
+ * Content
+ */
 .content-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-  height: 80vh;
-  padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 80vh;
+    padding: 1rem;
 }
-.empty-inbox{
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--content-color);
+
+.empty-inbox {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--content-color);
 }
+
 .todo-card {
-  display: flex;
-  width: 100%;
-  height: 25%;
-  color: var(--content-color);
-  box-shadow: 0.25rem 0.25rem 0.6rem rgba(100, 100, 100, 0.2);
+    display: flex;
+    width: 100%;
+    height: 25%;
+    color: var(--content-color);
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(100, 100, 100, 0.2);
 }
-.todo-card.finished{
-  display: none;
+
+.todo-card.finished {
+    display: none;
 }
+
 .todo-due-date {
-  width: 25%;
-  margin-right: 2rem;
-  margin-left: 1rem;
+    width: 25%;
+    margin-right: 2rem;
+    margin-left: 1rem;
 }
+
 .todo-title {
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
+
 .todo-title .bold {
-  font-weight: 400;
+    font-weight: 400;
 }
+
 p {
-  font-size: 0.8rem;
+    font-size: 0.8rem;
 }
+
 .todo-content {
-  width: 50%;
-  margin-right: 2rem;
+    width: 50%;
+    margin-right: 2rem;
 }
+
 .todo-content-txtarea {
-  height: 50%;
+    height: 50%;
 }
+
 .textarea-readonly {
-  resize: none;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  border-radius: 0.3rem;
-  margin-bottom: 1rem;
-  border: var(--border);
+    resize: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    border: var(--border);
 }
+
 .todo-edit-btn {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
+
 .todo-edit-btn a {
-  width: 25%;
-  text-decoration: none;
-  color: var(--primary-color);
-}
-.todo-edit-btn a:hover {
-  color: var(--secondary-color);
+    width: 25%;
+    text-decoration: none;
+    color: var(--primary-color);
 }
 
-/**********/
-/* Footer */
-/**********/
-footer {
-  background-image: linear-gradient(
-    102deg,
-    var(--primary-color) 0%,
-    var(--secondary-color)
-  );
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 5vh;
-  color: var(--white);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .social-media-icons a {
-  margin: 0.5rem;
-  color: var(--white);
-  text-decoration: none;
-}
-.social-media-icons a:hover {
-  color: var(--secondary-color);
-}
-span {
-  font-size: 0.75rem;
-  font-style: italic;
-  margin-left: 2rem;
+    margin: 0.5rem;
+    color: var(--white);
+    text-decoration: none;
 }
 
-/**********************/
-/* Create / Edit Note */
-/**********************/
+.todo-edit-btn a:hover {
+    color: var(--secondary-color);
+}
+
+/**
+ * Footer
+ */
+footer {
+    background-image:
+        linear-gradient(
+            102deg,
+            var(--primary-color) 0%,
+            var(--secondary-color-light)
+        );
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5vh;
+    color: var(--white);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-media-icons a:hover {
+    color: var(--secondary-color);
+}
+
+span {
+    font-size: 0.75rem;
+    font-style: italic;
+    margin-left: 2rem;
+}
+
+/**
+ * Create / Edit Note
+ */
 .form {
     height: 80%;
     width: 100%;
@@ -206,26 +230,35 @@ span {
     align-items: center;
     flex-direction: column;
 }
-.title, .description, .importance, .duedate {
+
+.title,
+.description,
+.importance,
+.duedate {
     width: 50%;
     margin: 1rem;
     display: flex;
 }
+
 .description {
     height: 20%;
 }
+
 #duedate {
-  width: 20%;
+    width: 20%;
 }
+
 .label {
     width: 20%;
     margin-right: 1rem;
 }
+
 .input {
     width: 80%;
     border-radius: 0.3rem;
     border: var(--border);
 }
+
 #description {
     resize: none;
     -webkit-box-sizing: border-box;
@@ -233,7 +266,8 @@ span {
     box-sizing: border-box;
     border-radius: 0.3rem;
     border: var(--border);
-  }
+}
+
 .buttons {
     width: 50%;
     display: flex;
@@ -242,27 +276,30 @@ span {
     margin-left: 1rem;
 }
 
-/****************/
-/* Rating Stars */
-/****************/
+/**
+ * Rating Stars
+ */
 #rate:not(:checked) > input {
-  position: absolute;
-  top: -9999px;
+    position: absolute;
+    top: -9999px;
 }
+
 #rate:not(:checked) > label {
-  float: right;
-  width: 2rem;
-  cursor: pointer;
-  font-size: 2rem;
-  color: #ccc;
+    float: right;
+    width: 2rem;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #ccc;
 }
-#rate:not(:checked) > label:before {
-  content: "\f005";
-  font-family: "Font Awesome 5 Free";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 1rem;
+
+#rate:not(:checked) > label::before {
+    content: "\f005";
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
 }
+
 #rate > input:checked ~ label {
-  color: var(--primary-color);
+    color: var(--primary-color);
 }

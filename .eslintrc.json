@@ -17,6 +17,12 @@
     "import/extensions": "off",
     "object-curly-newline": "off",
     "object-curly-spacing": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off", 
+    "no-unused-vars": "warn", 
+    "prefer-destructuring": "warn",
+    "no-undef": "warn",
+    "no-shadow": "warn",
+    "arrow-parens": "warn", 
+    "no-unused-expressions":"warn"
   }
 }
