@@ -1,16 +1,38 @@
-let notes = [
-    { id: '01', title: 'CAS FEE Selbststudium / Projekt Aufgabe erledigen', description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergpsum dolor sit amet.', importance: 2, created: '2010-03-03', duedate: '1990-05-03', finished: false },
-    { id: '02', title: 'Aufgabe 2', description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', importance: 3, created: '1990-01-03', duedate: '2000-04-12', finished: false },
-    { id: '03', title: 'Aufgabe 3', description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', importance: 1, created: '2000-02-03', duedate: '2010-03-22', finished: true },
-];
-
 /****************/
 /* Render Notes */
 /****************/
+let notes = [];
+
+function getNotes() {
+  var request = new XMLHttpRequest();
+  request.open("get", "https://60abe9f55a4de40017ccb2c6.mockapi.io/notes");
+  request.onreadystatechange = function(e){
+    if(request.readyState === XMLHttpRequest.DONE) {
+      var status = request.status;
+      if (status === 0 || (status >= 200 && status < 400)) {
+        notes = JSON.parse(e.target.response);
+        if (notes.length) {
+          renderNotes();
+        }
+      } else {
+        alert('Ooops something went really wrong!')
+      }
+    }
+  } 
+  request.send();
+}
+getNotes()
+
+function renderNotes() {
+  if (notesListElement) {
+    notesListElement.innerHTML = createNotesHTML(notes);
+  }
+};
+
 const notesListElement = document.querySelector(".content-wrapper")
 function createNotesHTML(notes) {
-    return notes.map(note =>
-        `<div class="todo-card">
+  return notes.map(note =>
+    `<div class="todo-card">
           <div class="todo-due-date">
             <div class="todo-title">
               <p>Duedate: ${note.duedate}</p>
@@ -37,41 +59,71 @@ function createNotesHTML(notes) {
             </a>
           </div>
         </div>`
-    ).join('');
+  ).join('');
 }
-function renderNotes() {
-    notesListElement.innerHTML = createNotesHTML(notes);
-}
-//renderNotes()
+
 
 /******************/
 /* Sort Functions */
 /******************/
 function sortByDueDate() {
-    const sortedByDueDate = [...notes].sort((a, b) => {
-        let dateA = new Date(a.duedate);
-        let dateB = new Date(b.duedate);
-        return dateA - dateB;
-    })
-    notes = sortedByDueDate;
-    renderNotes();
-
+  const sortedByDueDate = [...notes].sort((a, b) => {
+    let dateA = new Date(a.duedate);
+    let dateB = new Date(b.duedate);
+    return dateA - dateB;
+  })
+  notes = sortedByDueDate;
+  renderNotes()
 };
 function sortByCreatedDate() {
-    const sortedByCreatedDate = [...notes].sort((a, b) => {
-        let dateA = new Date(a.created);
-        let dateB = new Date(b.created);
-        return dateA - dateB;
-    });
-    notes = sortedByCreatedDate;
-    renderNotes();
+  const sortedByCreatedDate = [...notes].sort((a, b) => {
+    let dateA = new Date(a.created);
+    let dateB = new Date(b.created);
+    return dateA - dateB;
+  });
+  notes = sortedByCreatedDate;
+  renderNotes()
 };
 function sortByImportance() {
-    const sortedByImportance = [...notes].sort((a, b) => {
-        let importanceA = a.importance
-        let importanceB = b.importance
-        return importanceA - importanceB
-    })
-    notes = sortedByImportance;
-    renderNotes();
+  const sortedByImportance = [...notes].sort((a, b) => {
+    let importanceA = a.importance
+    let importanceB = b.importance
+    return importanceA - importanceB
+  })
+  notes = sortedByImportance;
+  renderNotes()
 }
+
+/*******************/
+/* Create New Note */
+/*******************/
+const formElement = document.querySelector('.form');
+if (formElement) {
+  // this logic is needed because otherwise the event listener would fire twice for input and label
+  let rating = document.getElementById('rate').addEventListener('click', function (event) {
+    let element = event.path[0];
+    if (element.tagName === 'INPUT') {
+      rating = element.value;
+    }
+  });
+  formElement.onsubmit = async (e) => {
+    e.preventDefault();
+    // initialize formData
+    const formData = new FormData();
+    formData.append("title", document.querySelector('#title').value);
+    formData.append("description", document.querySelector('#description').value);
+    formData.append("importance", rating);
+    formData.append("created", moment().format().split('T')[0]);
+    formData.append("duedate", document.querySelector('#duedate').value);
+    formData.append("finished", false);
+
+    const newNote = Object.fromEntries(formData);
+    notes.push(newNote);
+    //console.log(notes)
+    window.location.href = "/docs"
+
+  }
+
+}
+
+
