@@ -67,12 +67,12 @@ header {
   justify-content: space-between;
   padding: 1rem;
 }
-.filter_left {
+.filter-left {
   width: 60%;
   display: flex;
   justify-content: space-between;
 }
-.filter_left button {
+.filter-left button {
   width: 15rem;
 }
 button,
@@ -96,7 +96,7 @@ button:hover {
 /***********/
 /* Content */
 /***********/
-.content_wrapper {
+.content-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -106,12 +106,22 @@ button:hover {
   background-color: var(--background-color);
   padding: 1rem;
 }
+.empty-inbox{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--content-color);
+}
 .todo-card {
   display: flex;
   width: 100%;
   height: 25%;
   color: var(--content-color);
   box-shadow: 0.25rem 0.25rem 0.6rem rgba(100, 100, 100, 0.2);
+}
+.todo-card.finished{
+  display: none;
 }
 .todo-due-date {
   width: 25%;
@@ -124,6 +134,9 @@ button:hover {
 }
 .todo-title .bold {
   font-weight: 400;
+}
+p {
+  font-size: 0.8rem;
 }
 .todo-content {
   width: 50%;
