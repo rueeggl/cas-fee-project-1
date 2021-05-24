@@ -6,8 +6,8 @@ let notes = [];
 function getNotes() {
   var request = new XMLHttpRequest();
   request.open("get", "https://60abe9f55a4de40017ccb2c6.mockapi.io/notes");
-  request.onreadystatechange = function(e){
-    if(request.readyState === XMLHttpRequest.DONE) {
+  request.onreadystatechange = function (e) {
+    if (request.readyState === XMLHttpRequest.DONE) {
       var status = request.status;
       if (status === 0 || (status >= 200 && status < 400)) {
         notes = JSON.parse(e.target.response);
@@ -18,7 +18,7 @@ function getNotes() {
         alert('Ooops something went really wrong!')
       }
     }
-  } 
+  }
   request.send();
 }
 getNotes()
@@ -28,7 +28,6 @@ function renderNotes() {
     notesListElement.innerHTML = createNotesHTML(notes);
   }
 };
-
 const notesListElement = document.querySelector(".content-wrapper")
 function createNotesHTML(notes) {
   return notes.map(note =>
@@ -98,6 +97,7 @@ function sortByImportance() {
 /* Create New Note */
 /*******************/
 const formElement = document.querySelector('.form');
+
 if (formElement) {
   // this logic is needed because otherwise the event listener would fire twice for input and label
   let rating = document.getElementById('rate').addEventListener('click', function (event) {
@@ -116,14 +116,21 @@ if (formElement) {
     formData.append("created", moment().format().split('T')[0]);
     formData.append("duedate", document.querySelector('#duedate').value);
     formData.append("finished", false);
-
+    
     const newNote = Object.fromEntries(formData);
-    notes.push(newNote);
-    //console.log(notes)
-    window.location.href = "/docs"
 
+    function postNote() {
+      var request = new XMLHttpRequest();
+      request.open("POST", "https://60abe9f55a4de40017ccb2c6.mockapi.io/notes");
+      request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");    
+      request.send(JSON.stringify(newNote));
+    }
+    postNote();
   }
-
+}
+function cancelNoteCreation() {
+  alert("Are you sure?")
+  window.location.href = "/docs"
 }
 
 
