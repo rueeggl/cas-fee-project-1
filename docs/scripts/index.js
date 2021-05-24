@@ -27,4 +27,3 @@ function themeMode() {
 if (themeToggle !== null) {
   themeToggle.addEventListener('change', themeMode);
 };
-

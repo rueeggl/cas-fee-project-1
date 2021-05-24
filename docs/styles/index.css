@@ -13,8 +13,6 @@
   --secondary-color-light: #6e91f6;
   --primary-color-dark: #331942;
   --secondary-color-dark: #202c4e;
-  --background-color-light: #ffffff;
-  --background-color-dark: #000000;
   --white: #ffffff;
   --black: #000000;
   --border: 0.16rem groove rgba(255, 255, 255, 0.7)
@@ -26,14 +24,10 @@
 .light-theme {
   --primary-color: var(--primary-color-light);
   --secondary-color: var(--secondary-color-light);
-  --background-color: var(--background-color-light);
-  --content-color: var(--black);
 }
 .dark-theme {
   --primary-color: var(--primary-color-dark);
   --secondary-color: var(--secondary-color-dark);
-  --background-color: var(--background-color-dark);
-  --content-color: var(--white);
 }
 
 /**********/
@@ -89,7 +83,6 @@ button,
   -moz-appearance: none;
 }
 button:hover {
-  background-color: var(--secondary-color);
   opacity: 0.6;
 }
 
@@ -103,7 +96,6 @@ button:hover {
   align-items: flex-start;
   display: flex;
   height: 80vh;
-  background-color: var(--background-color);
   padding: 1rem;
 }
 .empty-inbox{
