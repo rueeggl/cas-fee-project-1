@@ -1,7 +1,36 @@
 export class NoteService {
     constructor() {
-        this.notes = [];
+        this.notes = [
+            {
+              "id": "1",
+              "title": "CAS FEE Selbststudium / Projekt Aufgabe erledigen",
+              "description": "test",
+              "importance": "3",
+              "created": "2010-03-03",
+              "duedate": "1990-05-03",
+              "finished": false
+            },
+            {
+              "id": "2",
+              "title": "Einkaufen",
+              "description": "Eier, Milch, Mehl, Brot, Butter",
+              "importance": "2",
+              "created": "1990-01-03",
+              "duedate": "2000-04-12",
+              "finished": false
+            },
+            {
+              "id": "3",
+              "title": "Für Ferien packen",
+              "description": "Badetuch, Badehose, Sonnencreme, Sonnenbrille",
+              "importance": "1",
+              "created": "2000-02-03",
+              "duedate": "2010-03-22",
+              "finished": true
+            }
+          ]
         this.notesListElement = document.querySelector('.content-wrapper');
+
     }
 
     createNotesHTML(notes) {
@@ -35,79 +64,61 @@ export class NoteService {
               </div>`).join('');
     }
 
-
+    // async loadData() {
+    //    await fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes')
+    //     .then(response => response.json())
+    //     .then(json => json.forEach((note)=> this.notes.push(note)))
+    //     .catch(err => console.log('Request failed', err))
+    // }
+    
     renderNotes() {
-        if (this.notesListElement) {
-            this.notesListElement.innerHTML = this.createNotesHTML(this.notes);
-        }
-    }
-
-    loadData() {
-        const request = new XMLHttpRequest();
-        request.open('get', 'https://60abe9f55a4de40017ccb2c6.mockapi.io/notes');
-        request.onreadystatechange = function (e) {
-            if (request.readyState === XMLHttpRequest.DONE) {
-                const status = request.status;
-                if (status === 0 || (status >= 200 && status < 400)) {
-                    this.notes = JSON.parse(e.target.response);
-                    console.log(this.notes)
-                } else {
-                    alert('Ooops something went really wrong!');
-                }
-            }
-        };
-        request.send();
+        this.notesListElement ? this.notesListElement.innerHTML = this.createNotesHTML(this.notes) : false
     }
 
 
     sortByDueDate() {
-        const sortedByDueDate = [...notes].sort((a, b) => {
+        const sortedByDueDate = [...this.notes].sort((a, b) => {
             const dateA = new Date(a.duedate);
             const dateB = new Date(b.duedate);
             return dateA - dateB;
         });
         this.notes = sortedByDueDate;
+        this.renderNotes()
     }
 
     sortByCreatedDate() {
-        const sortedByCreatedDate = [...notes].sort((a, b) => {
+        const sortedByCreatedDate = [...this.notes].sort((a, b) => {
             const dateA = new Date(a.created);
             const dateB = new Date(b.created);
             return dateA - dateB;
         });
         this.notes = sortedByCreatedDate;
+        this.renderNotes()
     }
 
     sortByImportance() {
-        const sortedByImportance = [...notes].sort((a, b) => {
+        const sortedByImportance = [...this.notes].sort((a, b) => {
             const importanceA = a.importance;
             const importanceB = b.importance;
             return importanceA - importanceB;
         });
         this.notes = sortedByImportance;
+        this.renderNotes()
     }
 
     editNote(id) {
-        const request = new XMLHttpRequest();
-        request.open('get', `https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`);
-        request.onreadystatechange = function () {
-            if (request.readyState === XMLHttpRequest.DONE) {
-                const status = request.status;
-                if (status === 0 || (status >= 200 && status < 400)) {
-                    console.log(request.responseText);
-                } else {
-                    alert('Ooops something went really wrong!');
-                }
-            }
-        };
-        request.send();
+        fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`)
+        .then(response => response.json())
+        .then(json => console.log(json))
+        .catch(alert('Ooops something went really wrong!'))
     }
 
-    createNote() {
-        const request = new XMLHttpRequest();
-        request.open('POST', 'https://60abe9f55a4de40017ccb2c6.mockapi.io/notes');
-        request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        request.send(JSON.stringify(newNote));
+    createNote(newNote) {
+        fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes', {
+            method: 'POST', 
+            body: JSON.stringify(newNote), 
+            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+        })
     }
 
     cancelNoteCreation() {
@@ -115,54 +126,6 @@ export class NoteService {
         window.location.href = '/docs';
     }
 
-    initialize() {
-        this.loadData();
-        this.renderNotes();
-    }
-
-
-
 }
 
-
-
-
-
-/**
- * Create New Note
- */
-//  const formElement = document.querySelector('.form');
-
-//  if (formElement) {
-//    // this logic is needed because otherwise the event listener would fire twice for input and label
-//    let rating = document.getElementById('rate').addEventListener('click', event => {
-//      const element = event.path[0];
-//      if (element.tagName === 'INPUT') {
-//        rating = element.value;
-//      }
-//    });
-//    formElement.onsubmit = async (e) => {
-//      e.preventDefault();
-//      // initialize formData
-//      const formData = new FormData();
-//      formData.append('title', document.querySelector('#title').value);
-//      formData.append('description', document.querySelector('#description').value);
-//      formData.append('importance', rating);
-//      formData.append('created', moment().format().split('T')[0]);
-//      formData.append('duedate', document.querySelector('#duedate').value);
-//      formData.append('finished', false);
-
-//      const newNote = Object.fromEntries(formData);
-
-// function createNote() {
-//   const request = new XMLHttpRequest();
-//   request.open('POST', 'https://60abe9f55a4de40017ccb2c6.mockapi.io/notes');
-//   request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-//   request.send(JSON.stringify(newNote));
-// }
-// postNote();
-//    };
-//  }
-
-
-new NoteService().initialize();
+export const noteService = new NoteService();
