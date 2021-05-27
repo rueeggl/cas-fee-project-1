@@ -1,17 +1,15 @@
-import {noteService} from '../services/note-service.js'
+import {noteService} from '../services/note-service.js';
 
+document.querySelector('#sort-by-duedate-btn') ? document.querySelector('#sort-by-duedate-btn').addEventListener('click', () => noteService.sortByDueDate()) : false;
+document.querySelector('#sort-by-create-date-btn') ? document.querySelector('#sort-by-create-date-btn').addEventListener('click', () => noteService.sortByCreatedDate()) : false;
+document.querySelector('#sort-by-importance-btn') ? document.querySelector('#sort-by-importance-btn').addEventListener('click', () => noteService.sortByImportance()) : false;
 
-document.querySelector('#sort-by-duedate-btn') ? document.querySelector('#sort-by-duedate-btn').addEventListener('click', () => noteService.sortByDueDate() ) : false
-document.querySelector('#sort-by-create-date-btn') ? document.querySelector('#sort-by-create-date-btn').addEventListener('click', () => noteService.sortByCreatedDate() ) : false
-document.querySelector('#sort-by-importance-btn') ? document.querySelector('#sort-by-importance-btn').addEventListener('click', () => noteService.sortByImportance() ) : false
-
-document.querySelector('#cancel-note-creation-btn') ? document.querySelector('#cancel-note-creation-btn').addEventListener('click', () => noteService.cancelNoteCreation() ) : false
-
+document.querySelector('#cancel-note-creation-btn') ? document.querySelector('#cancel-note-creation-btn').addEventListener('click', () => noteService.cancelNoteCreation()) : false;
 
 const formElement = document.querySelector('.form');
 
 if (formElement) {
-    // this logic is needed because otherwise the event listener would fire twice for input and label
+    // this logic is needed because otherwise the eventlistener would fire twice for input and label
     let rating = document.getElementById('rate').addEventListener('click', event => {
       const element = event.path[0];
       if (element.tagName === 'INPUT') {
@@ -19,7 +17,6 @@ if (formElement) {
       }
     });
     formElement.onsubmit = async (e) => {
-        console.log('inside')
       e.preventDefault();
       // initialize formData
       const formData = new FormData();
@@ -29,12 +26,10 @@ if (formElement) {
       formData.append('created', moment().format().split('T')[0]);
       formData.append('duedate', document.querySelector('#duedate').value);
       formData.append('finished', false);
- 
       const newNote = Object.fromEntries(formData);
       noteService.createNote(newNote);
     };
   }
 
-
-//noteService.loadData();
+// noteService.loadData();
 noteService.renderNotes();

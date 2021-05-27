@@ -8,7 +8,7 @@ export class NoteService {
               "importance": "3",
               "created": "2010-03-03",
               "duedate": "1990-05-03",
-              "finished": false
+              "finished": false,
             },
             {
               "id": "2",
@@ -17,7 +17,7 @@ export class NoteService {
               "importance": "2",
               "created": "1990-01-03",
               "duedate": "2000-04-12",
-              "finished": false
+              "finished": false,
             },
             {
               "id": "3",
@@ -26,11 +26,10 @@ export class NoteService {
               "importance": "1",
               "created": "2000-02-03",
               "duedate": "2010-03-22",
-              "finished": true
-            }
-          ]
+              "finished": true,
+            },
+          ];
         this.notesListElement = document.querySelector('.content-wrapper');
-
     }
 
     createNotesHTML(notes) {
@@ -70,11 +69,10 @@ export class NoteService {
     //     .then(json => json.forEach((note)=> this.notes.push(note)))
     //     .catch(err => console.log('Request failed', err))
     // }
-    
-    renderNotes() {
-        this.notesListElement ? this.notesListElement.innerHTML = this.createNotesHTML(this.notes) : false
-    }
 
+    renderNotes() {
+        this.notesListElement ? this.notesListElement.innerHTML = this.createNotesHTML(this.notes) : false;
+    }
 
     sortByDueDate() {
         const sortedByDueDate = [...this.notes].sort((a, b) => {
@@ -83,7 +81,7 @@ export class NoteService {
             return dateA - dateB;
         });
         this.notes = sortedByDueDate;
-        this.renderNotes()
+        this.renderNotes();
     }
 
     sortByCreatedDate() {
@@ -93,7 +91,7 @@ export class NoteService {
             return dateA - dateB;
         });
         this.notes = sortedByCreatedDate;
-        this.renderNotes()
+        this.renderNotes();
     }
 
     sortByImportance() {
@@ -103,29 +101,28 @@ export class NoteService {
             return importanceA - importanceB;
         });
         this.notes = sortedByImportance;
-        this.renderNotes()
+        this.renderNotes();
     }
 
     editNote(id) {
         fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`)
         .then(response => response.json())
         .then(json => console.log(json))
-        .catch(alert('Ooops something went really wrong!'))
+        .catch(alert('Ooops something went really wrong!'));
     }
 
     createNote(newNote) {
         fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes', {
-            method: 'POST', 
-            body: JSON.stringify(newNote), 
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
-        })
+            method: 'POST',
+            body: JSON.stringify(newNote),
+            headers: {'Content-Type': 'application/json; charset=UTF-8'},
+        });
     }
 
     cancelNoteCreation() {
         alert('Are you sure?');
         window.location.href = '/docs';
     }
-
 }
 
 export const noteService = new NoteService();
