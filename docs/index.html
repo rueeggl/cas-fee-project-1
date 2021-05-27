@@ -24,9 +24,9 @@
     </div>
     <div class="filter">
       <div class="filter-left">
-        <button onclick="sortByDueDate()">By finish Date</button>
-        <button onclick="sortByCreatedDate()">By created Date</button>
-        <button onclick="sortByImportance()">By Importance</button>
+        <button data-action="sortByDueDate">By finish Date</button>
+        <button data-action="sortByCreatedDate">By created Date</button>
+        <button data-action="sortByImportance">By Importance</button>
       </div>
       <div class="filter-right">
         <button>Show finished</button>
@@ -56,7 +56,8 @@
     <span>&copy; Laura Rüegg, Ostschweizer Fachhochschule</span>
   </footer>
   <script src="scripts/index.js" type="module"></script>
-  <script src="scripts/notes.js"></script>
+  <script src="scripts/note.js" type="module" defer></script>
+  <script src="scripts/services/note-service.js" type="module" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
