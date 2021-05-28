@@ -21,8 +21,18 @@ if (document.querySelector('#sort-by-duedate-btn')) {
     renderNotes();
   })
 }
+if (document.querySelector('#cancel-note-creation-btn')) {
+  document.querySelector('#cancel-note-creation-btn').addEventListener('click', () => {
+    noteService.cancelNoteCreation();
+  })
+}
+if (document.querySelector('#show-finished-btn')) {
+  document.querySelector('#show-finished-btn').addEventListener('click', () => {
+    renderFinished();
+  })
+}
 
-document.querySelector('#cancel-note-creation-btn') ? document.querySelector('#cancel-note-creation-btn').addEventListener('click', () => noteService.cancelNoteCreation()) : false;
+
 /**
  * Form
  */
@@ -111,6 +121,13 @@ function createNotesHTML(notes) {
             </a>
           </div>
         </div>`).join('');
+}
+
+function renderFinished() {
+  let todoCard = document.querySelectorAll('.todo-card')
+  for(let i=0; i<todoCard.length; i++) {
+    todoCard[i].classList.remove('finished')
+  }
 }
 
 await noteService.loadData();
