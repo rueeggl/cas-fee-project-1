@@ -23,7 +23,6 @@ if (document.querySelector('#sort-by-duedate-btn')) {
 }
 
 document.querySelector('#cancel-note-creation-btn') ? document.querySelector('#cancel-note-creation-btn').addEventListener('click', () => noteService.cancelNoteCreation()) : false;
-
 /**
  * Form
  */
@@ -51,18 +50,34 @@ if (formElement) {
     await noteService.loadData();
     noteService.redirectToOverview();
   };
-
 }
 
 /**
  * Note Template
  */
-const notesListElement = document.querySelector('.content-wrapper');
-
-
 function renderNotes() {
-  if (notesListElement) {
+  const notesListElement = document.querySelector('.content-wrapper');
+  notesListElement.innerHTML = "";
+  if (!noteService.notes.length) {
+    notesListElement.innerHTML = `
+    <div class="empty-inbox">
+      <div>
+        <img src="assets/emptyinbox.jpeg" alt="empty-inbox">
+      </div>
+      <p>You're done for the day! Enjoy!</p>
+    </div>`;
+  }
+  else {
     notesListElement.innerHTML = createNotesHTML(noteService.notes);
+    let checkboxElement = document.querySelectorAll('#checkbox')
+    for (let i = 0; i < checkbox.length; i++) {
+      checkboxElement[i].addEventListener('change', (e) => {
+        let selectedCheckbox = document.getElementById(`${e.target.id}`)
+        selectedCheckbox.setAttribute('checked', 'checked')
+        selectedCheckbox.closest('.todo-card').classList.add('finished')
+        noteService.checkAsFinished(e.target.id);
+      });
+  }
   }
 }
 
@@ -76,14 +91,15 @@ function createNotesHTML(notes) {
             <div class="todo-title">
               <p>Created: ${note.created}</p>
             </div>
-            <div class="checkbox">
-              <input type="checkbox" name="checkbox" id="checkbox-${note.id}">
+            <div class="checkbox" id='checkbox'>
+              <input type="checkbox" name="checkbox" id="${note.id}">
               <label for="checkbox-${note.id}">Finished</label>
             </div>
           </div>
           <div class="todo-content">
             <div class="todo-title">
               <p class="bold">${note.title}</p>
+              <p class="bold">${note.importance}</p>
             </div>
             <div class="todo-content-txtarea">
               <textarea class="textarea-readonly" readonly>${note.description}</textarea>

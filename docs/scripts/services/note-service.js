@@ -31,9 +31,17 @@ export class NoteService {
         const sortedByImportance = [...this.notes].sort((a, b) => {
             const importanceA = a.importance;
             const importanceB = b.importance;
-            return importanceA - importanceB;
+            return importanceB - importanceA;
         });
         this.notes = sortedByImportance;
+    }
+    
+    checkAsFinished(id) {
+      fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({finished: true}),
+            headers: {'Content-Type': 'application/json; charset=UTF-8'},
+        });
     }
 
     editNote(id) {
@@ -42,7 +50,7 @@ export class NoteService {
         .then(json => console.log(json))
         .catch(alert('Ooops something went really wrong!'));
     }
-
+    
     createNote(newNote) {
         fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes', {
             method: 'POST',
@@ -55,6 +63,7 @@ export class NoteService {
         alert('Are you sure?');
         this.redirectToOverview()
     }
+
     redirectToOverview() {
       window.location.href = '/docs';
     }

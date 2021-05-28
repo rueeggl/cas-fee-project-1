@@ -119,6 +119,7 @@ button:hover {
     display: flex;
     width: 100%;
     min-height: 25%;
+    margin-bottom: 2rem;
     color: var(--content-color);
     box-shadow: 0.25rem 0.25rem 0.6rem rgba(100, 100, 100, 0.2);
 }
@@ -302,5 +303,8 @@ span {
 }
 
 #rate > input:checked ~ label {
+    color: var(--primary-color);
+}
+#colored-star {
     color: var(--primary-color);
 }
