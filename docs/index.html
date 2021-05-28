@@ -24,23 +24,16 @@
     </div>
     <div class="filter">
       <div class="filter-left">
-        <button onclick="sortByDueDate()">By finish Date</button>
-        <button onclick="sortByCreatedDate()">By created Date</button>
-        <button onclick="sortByImportance()">By Importance</button>
+        <button id="sort-by-duedate-btn">By finish Date</button>
+        <button id="sort-by-create-date-btn">By created Date</button>
+        <button id="sort-by-importance-btn">By Importance</button>
       </div>
       <div class="filter-right">
-        <button>Show finished</button>
+        <button id="show-finished-btn">Show finished</button>
       </div>
     </div>
   </header>
-  <div class="content-wrapper">
-    <div class="empty-inbox">
-      <div>
-        <img src="assets/emptyinbox.jpeg" alt="empty-inbox">
-      </div>
-      <p>You're done for the day! Enjoy!</p>
-    </div>
-  </div>
+  <div class="content-wrapper"></div>
   <footer>
     <div class="social-media-icons">
       <a href="https://www.facebook.com/larueegg" target="_blank">
@@ -56,7 +49,9 @@
     <span>&copy; Laura Rüegg, Ostschweizer Fachhochschule</span>
   </footer>
   <script src="scripts/index.js" type="module"></script>
-  <script src="scripts/notes.js"></script>
+  <script src="scripts/note.js" type="module"></script>
+  <script src="scripts/services/note-service.js" type="module"></script>
+  <script src="scripts/controllers/note.controller.js" type="module"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 

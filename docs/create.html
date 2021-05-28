@@ -48,8 +48,8 @@
       <input class="input" type="date" id="duedate" name="duedate" />
     </div>
     <div class="buttons">
-      <button type="submit">Save</button>
-      <button type="button" onclick="cancelNoteCreation()">Cancel</button>
+      <button id="save-note-creation-btn">Save</button>
+      <button id="cancel-note-creation-btn">Cancel</button>
     </div>
   </form>
   <footer>
@@ -67,6 +67,8 @@
     <span>&copy; Laura Rüegg, Ostschweizer Fachhochschule</span>
   </footer>
   <script src="scripts/index.js" type="module"></script>
-  <script src="scripts/notes.js"></script>
+  <script src="scripts/note.js" type="module" defer></script>
+  <script src="scripts/services/note-service.js" type="module" defer></script>
+  <script src="scripts/controllers/note.controller.js" type="module" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
