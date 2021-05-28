@@ -16,7 +16,6 @@ export class NoteService {
             return dateA - dateB;
         });
         this.notes = sortedByDueDate;
-        renderNotes();
     }
 
     sortByCreatedDate() {
@@ -26,7 +25,6 @@ export class NoteService {
             return dateA - dateB;
         });
         this.notes = sortedByCreatedDate;
-        renderNotes();
     }
 
     sortByImportance() {
@@ -36,7 +34,6 @@ export class NoteService {
             return importanceA - importanceB;
         });
         this.notes = sortedByImportance;
-        renderNotes();
     }
 
     editNote(id) {
@@ -56,7 +53,10 @@ export class NoteService {
 
     cancelNoteCreation() {
         alert('Are you sure?');
-        window.location.href = '/docs';
+        this.redirectToOverview()
+    }
+    redirectToOverview() {
+      window.location.href = '/docs';
     }
 }
 

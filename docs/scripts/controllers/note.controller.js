@@ -3,9 +3,25 @@ import { noteService } from '../services/note-service.js';
 /**
  * Click Event Listeners
  */
-document.querySelector('#sort-by-duedate-btn') ? document.querySelector('#sort-by-duedate-btn').addEventListener('click', () => noteService.sortByDueDate()) : false;
-document.querySelector('#sort-by-create-date-btn') ? document.querySelector('#sort-by-create-date-btn').addEventListener('click', () => noteService.sortByCreatedDate()) : false;
-document.querySelector('#sort-by-importance-btn') ? document.querySelector('#sort-by-importance-btn').addEventListener('click', () => noteService.sortByImportance()) : false;
+if (document.querySelector('#sort-by-create-date-btn')) {
+  document.querySelector('#sort-by-create-date-btn').addEventListener('click', () => {
+    noteService.sortByCreatedDate();
+    renderNotes();
+  })
+}
+if (document.querySelector('#sort-by-importance-btn')) {
+  document.querySelector('#sort-by-importance-btn').addEventListener('click', () => {
+    noteService.sortByImportance();
+    renderNotes();
+  })
+}
+if (document.querySelector('#sort-by-duedate-btn')) {
+  document.querySelector('#sort-by-duedate-btn').addEventListener('click', () => {
+    noteService.sortByDueDate();
+    renderNotes();
+  })
+}
+
 document.querySelector('#cancel-note-creation-btn') ? document.querySelector('#cancel-note-creation-btn').addEventListener('click', () => noteService.cancelNoteCreation()) : false;
 
 /**
@@ -32,7 +48,10 @@ if (formElement) {
     formData.append('finished', false);
     const newNote = Object.fromEntries(formData);
     noteService.createNote(newNote);
+    await noteService.loadData();
+    noteService.redirectToOverview();
   };
+
 }
 
 /**
@@ -40,8 +59,11 @@ if (formElement) {
  */
 const notesListElement = document.querySelector('.content-wrapper');
 
+
 function renderNotes() {
-  notesListElement ? notesListElement.innerHTML = createNotesHTML(noteService.notes) : false;
+  if (notesListElement) {
+    notesListElement.innerHTML = createNotesHTML(noteService.notes);
+  }
 }
 
 function createNotesHTML(notes) {
