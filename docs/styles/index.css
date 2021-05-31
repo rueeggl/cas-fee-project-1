@@ -136,6 +136,8 @@ button:hover {
 
 .todo-title {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1rem;
     margin-top: 1rem;
 }
@@ -311,6 +313,3 @@ span {
 #rate > input:checked ~ label {
     color: var(--primary-color);
 }
-
-
-
