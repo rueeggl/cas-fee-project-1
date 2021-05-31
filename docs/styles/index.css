@@ -135,6 +135,7 @@ button:hover {
 }
 
 .todo-title {
+    display: flex;
     margin-bottom: 1rem;
     margin-top: 1rem;
 }
@@ -145,6 +146,7 @@ button:hover {
 
 p {
     font-size: 0.8rem;
+    margin-right: 1rem;
 }
 
 .todo-content {
@@ -233,6 +235,10 @@ span {
     flex-direction: column;
 }
 
+.form.form-edit {
+    margin-top: 10%;
+}
+
 .title,
 .description,
 .importance,
@@ -305,6 +311,6 @@ span {
 #rate > input:checked ~ label {
     color: var(--primary-color);
 }
-#colored-star {
-    color: var(--primary-color);
-}
+
+
+
