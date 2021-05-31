@@ -1,6 +1,7 @@
 export class NoteService {
     constructor() {
         this.notes = [];
+        this.note = {};
     }
 
     async loadData() {
@@ -36,19 +37,18 @@ export class NoteService {
         this.notes = sortedByImportance;
     }
     
-    checkAsFinished(id) {
+    checkAsFinished(id, checked) {
       fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
             method: 'PUT',
-            body: JSON.stringify({finished: true}),
+            body: JSON.stringify({finished: checked}),
             headers: {'Content-Type': 'application/json; charset=UTF-8'},
         });
     }
 
-    editNote(id) {
-        fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`)
-        .then(response => response.json())
-        .then(json => console.log(json))
-        .catch(alert('Ooops something went really wrong!'));
+    async getNote(id) {
+        const response = await (fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`));
+        this.note = await response.json();
+        window.location.href = 'edit.html'
     }
     
     createNote(newNote) {
