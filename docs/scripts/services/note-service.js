@@ -61,7 +61,7 @@ export class NoteService {
 
     cancelNoteCreation() {
         alert('Are you sure?');
-        this.redirectToOverview()
+        this.redirectToOverview();
     }
 
     redirectToOverview() {

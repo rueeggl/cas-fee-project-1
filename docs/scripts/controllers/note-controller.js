@@ -34,7 +34,7 @@ if (document.querySelector('#show-finished-btn')) {
 
 
 /**
- * Form
+ * Create Form
  */
 const formElement = document.querySelector('.form');
 if (formElement) {
@@ -67,7 +67,7 @@ if (formElement) {
  */
 function renderNotes() {
   const notesListElement = document.querySelector('.content-wrapper');
-  notesListElement.innerHTML = "";
+  notesListElement ? notesListElement.innerHTML = "" : false;
   if (!noteService.notes.length) {
     notesListElement.innerHTML = `
     <div class="empty-inbox">
@@ -77,7 +77,7 @@ function renderNotes() {
       <p>You're done for the day! Enjoy!</p>
     </div>`;
   }
-  else {
+  else if(notesListElement) {
     notesListElement.innerHTML = createNotesHTML(noteService.notes);
     let checkboxElement = document.querySelectorAll('#checkbox')
     for (let i = 0; i < checkbox.length; i++) {
@@ -102,7 +102,7 @@ function createNotesHTML(notes) {
               <p>Created: ${note.created}</p>
             </div>
             <div class="checkbox" id='checkbox'>
-              <input type="checkbox" name="checkbox" id="${note.id}">
+              <input type="checkbox" name="checkbox" id="${note.id}" ${note.finished ? 'checked' : ''}>
               <label for="checkbox-${note.id}">Finished</label>
             </div>
           </div>

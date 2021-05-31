@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Note App</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
-    integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
   <link rel="icon" type="image/jpg" href=assets/favicon.png>
   <link rel="stylesheet" href="styles/index.css">
+  <script defer src="scripts/services/note-service.js" type="module"></script>
+  <script defer src="scripts/controllers/theme-controller.js" type="module"></script>
+  <script defer src="scripts/controllers/note-controller.js" type="module"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="light-theme">
@@ -48,11 +50,6 @@
     </div>
     <span>&copy; Laura Rüegg, Ostschweizer Fachhochschule</span>
   </footer>
-  <script src="scripts/index.js" type="module"></script>
-  <script src="scripts/note.js" type="module"></script>
-  <script src="scripts/services/note-service.js" type="module"></script>
-  <script src="scripts/controllers/note.controller.js" type="module"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>
