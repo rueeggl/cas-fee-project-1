@@ -53,13 +53,13 @@ if (formElement) {
     e.preventDefault();
     // initialize formData
     const formData = new FormData();
-    formData.append('title', document.querySelector('#title').value);
-    formData.append('description', document.querySelector('#description').value);
-    formData.append('importance', rating);
-    formData.append('created', moment().format().split('T')[0]);
-    formData.append('duedate', document.querySelector('#duedate').value);
-    formData.append('finished', false);
     const newNote = Object.fromEntries(formData);
+    newNote.title = document.querySelector('#title').value
+    newNote.description = document.querySelector('#description').value
+    newNote.importance = rating
+    newNote.created = moment().format().split('T')[0]
+    newNote.duedate = document.querySelector('#duedate').value
+    newNote.finished = false
     noteService.createNote(newNote);
     await noteService.loadData();
     noteService.redirectToOverview();
@@ -91,11 +91,11 @@ function renderNotes() {
         if (isChecked) {
           selectedCheckbox.setAttribute('checked', 'checked')
           selectedCheckbox.closest('.todo-card').classList.add('finished')
-          noteService.checkAsFinished(e.target.id, true);
+          noteService.checkAsFinished(e.target.id.split('-')[1], true);
         } else {
           selectedCheckbox.removeAttribute('checked')
           selectedCheckbox.closest('.todo-card').classList.remove('finished')
-          noteService.checkAsFinished(e.target.id, false);
+          noteService.checkAsFinished(e.target.id.split('-')[1], false);
         }
       });
     }
@@ -113,7 +113,7 @@ function createNotesHTML(notes) {
               <p>Created: ${note.created}</p>
             </div>
             <div class="checkbox" id='checkbox'>
-              <input type="checkbox" name="checkbox" id="checkbox-${note.id}" ${note.finished === true ? 'checked' : ''}>
+              <input type="checkbox" name="checkbox" id="checkbox-${note.id}" ${note.finished ? 'checked' : ''}>
               <label for="checkbox-${note.id}">Finished</label>
             </div>
           </div>
@@ -121,15 +121,15 @@ function createNotesHTML(notes) {
             <div class="todo-title">
               <p class="bold">${note.title}</p>
             <div id="rate">
-              <input type="radio" id="star5" name="rate" value="5" ${note.importance === '5' ? 'checked' : ''} disabled/>
+              <input type="radio" id="star5" name="rate-${note.id}" value="5" ${note.importance === '5' ? 'checked' : ''} disabled/>
               <label for="star5" title="text"></label>
-              <input type="radio" id="star4" name="rate" value="4" ${note.importance === '4' ? 'checked' : ''} disabled/>
+              <input type="radio" id="star4" name="rate-${note.id}" value="4" ${note.importance === '4' ? 'checked' : ''} disabled/>
               <label for="star4" title="text"></label>
-              <input type="radio" id="star3" name="rate" value="3" ${note.importance === '3' ? 'checked' : ''} disabled/>
+              <input type="radio" id="star3" name="rate-${note.id}" value="3" ${note.importance === '3' ? 'checked' : ''} disabled/>
               <label for="star3" title="text"></label>
-              <input type="radio" id="star2" name="rate" value="2" ${note.importance === '2' ? 'checked' : ''} disabled/>
+              <input type="radio" id="star2" name="rate-${note.id}" value="2" ${note.importance === '2' ? 'checked' : ''} disabled/>
               <label for="star2" title="text"></label>
-              <input type="radio" id="star1" name="rate" value="1" ${note.importance === '1' ? 'checked' : ''} disabled/>
+              <input type="radio" id="star1" name="rate-${note.id}" value="1" ${note.importance === '1' ? 'checked' : ''} disabled/>
               <label for="star1" title="text"></label>
             </div>
             </div>
