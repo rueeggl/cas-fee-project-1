@@ -5,9 +5,9 @@ export class NoteService {
     }
 
     async loadData() {
-      const response = await(fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes'));
-      const data = await response.json();
-      data.forEach((note) => this.notes.push(note))
+        const response = await (fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes'));
+        const data = await response.json();
+        data.forEach((note) => this.notes.push(note))
     }
 
     sortByDueDate() {
@@ -36,36 +36,52 @@ export class NoteService {
         });
         this.notes = sortedByImportance;
     }
-    
+
     checkAsFinished(id, checked) {
-      fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
+        fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
             method: 'PUT',
-            body: JSON.stringify({finished: checked}),
-            headers: {'Content-Type': 'application/json; charset=UTF-8'},
+            body: JSON.stringify({ finished: checked }),
+            headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         });
     }
 
     async getNote(id) {
         const response = await (fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`));
         this.note = await response.json();
-        window.location.href = 'edit.html'
     }
-    
+
+    async deleteNote(id) {
+        var alert = confirm("Are you sure you want to delete the note?");
+        if (alert === true) {
+            fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(res => console.log(res))
+        } else {
+            this.redirectToOverview();
+        }
+    }
+
     createNote(newNote) {
         fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes', {
             method: 'POST',
             body: JSON.stringify(newNote),
-            headers: {'Content-Type': 'application/json; charset=UTF-8'},
+            headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         });
     }
 
-    cancelNoteCreation() {
-        alert('Are you sure?');
-        this.redirectToOverview();
+    cancelRequest() {
+        var alert = confirm("Cancel note creation?");
+        if (alert === true) {
+            this.redirectToOverview();
+        } else {
+            window.location.href = '/docs/create.html';
+        }
     }
 
     redirectToOverview() {
-      window.location.href = '/docs';
+        window.location.href = '/docs';
     }
 }
 
