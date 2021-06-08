@@ -172,12 +172,14 @@ p {
     border: var(--border);
 }
 
-.todo-edit-btn {
+.todo-edit-btn, 
+.todo-delete-btn{
     display: flex;
     align-items: center;
+    padding: 1rem;
 }
 
-.todo-edit-btn a {
+div[class^="todo-"] a{
     width: 25%;
     text-decoration: none;
     color: var(--primary-color);

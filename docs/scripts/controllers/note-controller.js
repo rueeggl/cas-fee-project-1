@@ -95,6 +95,11 @@ function createNotesHTML(notes) {
               <i id="edit-btn-${note.id}" class="fas fa-edit fa-lg"></i>
             </a>
           </div>
+          <div class="todo-delete-btn">
+            <a href="#">
+              <i id="delete-btn-${note.id}" class="fas fa-trash-alt fa-lg"></i>
+            </a>
+          </div>
         </div>`).join('');
 }
 
@@ -113,5 +118,17 @@ document.querySelectorAll("[id^='edit-btn-']").forEach((item) => {
   item.addEventListener('click', async event => {
     let id = event.target.id.split('-')[2];
     await noteService.getNote(id);
+    const urlParams = new URLSearchParams(window.location.search);
+    Object.entries(noteService.note).forEach(([key, value]) => {
+      urlParams.append(key, value)
+  });
+    window.location.href = 'edit.html?' + urlParams;
+  })
+})
+document.querySelectorAll("[id^='delete-btn-']").forEach((item) => {
+  item.addEventListener('click', async event => {
+    let id = event.target.id.split('-')[2];
+    console.log(id)
+    await noteService.deleteNote(id);
   })
 })
