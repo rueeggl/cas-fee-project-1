@@ -76,12 +76,12 @@ export class NoteService {
         if (alert === true) {
             this.redirectToOverview();
         } else {
-            window.location.href = '/docs/create.html';
+            window.location.href = '/create.html';
         }
     }
 
     redirectToOverview() {
-        window.location.href = '/docs';
+        window.location.href = '/';
     }
 }
 
