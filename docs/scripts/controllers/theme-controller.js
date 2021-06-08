@@ -28,13 +28,12 @@ if (themeToggle !== null) {
   themeToggle.addEventListener('change', themeMode);
 }
 
-
 /**
  * Theme Persistance after Reload and Redirect
  */
 function getThemeAfterReload() {
-  if(themeToggle !== null) {
-    if(currentTheme === 'light-theme'){
+  if (themeToggle !== null) {
+    if (currentTheme === 'light-theme') {
       document.getElementById('light-theme').setAttribute('selected', 'selected');
     } else if (currentTheme === 'dark-theme') {
       document.getElementById('dark-theme').setAttribute('selected', 'selected');
@@ -43,4 +42,4 @@ function getThemeAfterReload() {
     }
   }
 }
-document.addEventListener("DOMContentLoaded", getThemeAfterReload);
+document.addEventListener('DOMContentLoaded', getThemeAfterReload);
