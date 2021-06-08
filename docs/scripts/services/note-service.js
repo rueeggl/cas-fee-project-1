@@ -71,17 +71,25 @@ export class NoteService {
         });
     }
 
+    editNote(id, payload) {
+        fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(payload),
+            headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+        });
+    }
+
     cancelRequest() {
         var alert = confirm("Cancel note creation?");
         if (alert === true) {
             this.redirectToOverview();
         } else {
-            window.location.href = '/create.html';
+            window.location.href = '/docs/create.html';
         }
     }
 
     redirectToOverview() {
-        window.location.href = '/';
+        window.location.href = '/docs';
     }
 }
 
