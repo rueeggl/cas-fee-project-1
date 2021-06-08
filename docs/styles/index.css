@@ -172,23 +172,23 @@ p {
     border: var(--border);
 }
 
-.todo-edit-btn, 
-.todo-delete-btn{
+.todo-edit-btn,
+.todo-delete-btn {
     display: flex;
     align-items: center;
     padding: 1rem;
-}
-
-div[class^="todo-"] a{
-    width: 25%;
-    text-decoration: none;
-    color: var(--primary-color);
 }
 
 .social-media-icons a {
     margin: 0.5rem;
     color: var(--white);
     text-decoration: none;
+}
+
+div[class^="todo-"] a {
+    width: 25%;
+    text-decoration: none;
+    color: var(--primary-color);
 }
 
 .todo-edit-btn a:hover {

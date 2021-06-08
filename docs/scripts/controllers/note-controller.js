@@ -128,7 +128,6 @@ document.querySelectorAll("[id^='edit-btn-']").forEach((item) => {
 document.querySelectorAll("[id^='delete-btn-']").forEach((item) => {
   item.addEventListener('click', async event => {
     let id = event.target.id.split('-')[2];
-    console.log(id)
     await noteService.deleteNote(id);
   })
 })

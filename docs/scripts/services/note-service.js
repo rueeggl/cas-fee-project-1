@@ -7,7 +7,7 @@ export class NoteService {
     async loadData() {
         const response = await (fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes'));
         const data = await response.json();
-        data.forEach((note) => this.notes.push(note))
+        data.forEach((note) => this.notes.push(note));
     }
 
     sortByDueDate() {
@@ -51,13 +51,12 @@ export class NoteService {
     }
 
     async deleteNote(id) {
-        var alert = confirm("Are you sure you want to delete the note?");
+        const alert = confirm('Are you sure you want to delete the note?');
         if (alert === true) {
             fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
             method: 'DELETE',
         })
-            .then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => res.json());
         } else {
             this.redirectToOverview();
         }
@@ -80,7 +79,7 @@ export class NoteService {
     }
 
     cancelRequest() {
-        var alert = confirm("Cancel note creation?");
+        const alert = confirm('Cancel note creation?');
         if (alert === true) {
             this.redirectToOverview();
         } else {
