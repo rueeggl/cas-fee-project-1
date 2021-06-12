@@ -7,7 +7,7 @@ export class NoteService {
     }
 
     async loadData() {
-        const response = await (httpService.ajax("GET", "http://localhost:3000/", undefined));
+        const response = await (httpService.ajax("GET", "/", undefined));
         const data = await response.json();
         data.forEach((note) => this.notes.push(note));
     }
