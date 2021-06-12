@@ -10,7 +10,8 @@
     "stylelint": "stylelint \"**/*.css\"",
     "w3c": "html-validator --file ./docs/index.html  --verbose",
     "eslint": "eslint \"**/*.js\"",
-    "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\""
+    "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\"", 
+    "nodemon": "nodemon index.js"
   },
   "author": "Michael Gfeller",
   "license": "ISC",
@@ -19,11 +20,14 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "html-validator-cli": "^7.0.1",
+    "nodemon": "^2.0.7",
     "stylelint": "^13.12.0",
     "stylelint-config-standard": "^21.0.0"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "nedb": "^1.8.0",
+    "nedb-promise": "^2.0.1"
   }
 }

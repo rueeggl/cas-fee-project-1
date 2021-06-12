@@ -1,3 +1,5 @@
+import { httpService } from './http-service.js'
+
 export class NoteService {
     constructor() {
         this.notes = [];
@@ -5,7 +7,7 @@ export class NoteService {
     }
 
     async loadData() {
-        const response = await (fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes'));
+        const response = await (httpService.ajax("GET", "http://localhost:3000/", undefined));
         const data = await response.json();
         data.forEach((note) => this.notes.push(note));
     }
@@ -38,7 +40,7 @@ export class NoteService {
     }
 
     checkAsFinished(id, checked) {
-        fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
+        fetch(`/notes/${id}`, {
             method: 'PUT',
             body: JSON.stringify({ finished: checked }),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
@@ -46,14 +48,14 @@ export class NoteService {
     }
 
     async getNote(id) {
-        const response = await (fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`));
+        const response = await (fetch(`/notes/${id}`));
         this.note = await response.json();
     }
 
     async deleteNote(id) {
         const alert = confirm('Are you sure you want to delete the note?');
         if (alert === true) {
-            fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
+            fetch(`/notes/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json());
@@ -63,7 +65,7 @@ export class NoteService {
     }
 
     createNote(newNote) {
-        fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes', {
+        fetch('/notes/', {
             method: 'POST',
             body: JSON.stringify(newNote),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
@@ -71,7 +73,7 @@ export class NoteService {
     }
 
     editNote(id, payload) {
-        fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
+        fetch(`/notes/${id}`, {
             method: 'PUT',
             body: JSON.stringify(payload),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },

@@ -18,11 +18,18 @@
     "object-curly-newline": "off",
     "object-curly-spacing": "off",
     "linebreak-style": "off", 
-    "no-unused-vars": "warn", 
-    "prefer-destructuring": "warn",
-    "no-undef": "warn",
-    "no-shadow": "warn",
-    "arrow-parens": "warn", 
-    "no-unused-expressions":"warn"
+    "no-unused-vars": "off", 
+    "prefer-destructuring": "off",
+    "no-undef": "off",
+    "no-shadow": "off",
+    "arrow-parens": "off", 
+    "no-unused-expressions":"off", 
+    "class-methods-use-this":"off", 
+    "no-restricted-globals":"off", 
+    "no-alert":"off", 
+    "no-useless-concat":"off"
+
+
+
   }
 }
