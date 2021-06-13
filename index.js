@@ -10,7 +10,6 @@ const app = express();
 const port = 3000;
 
 const allowCrossDomain = function(req, res, next) {
-    //res.header('Access-Control-Allow-Origin', 'http://localhost:3001'); /*check adress*/
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,PATCH,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');

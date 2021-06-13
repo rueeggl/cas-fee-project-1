@@ -37,8 +37,8 @@ export class NoteService {
         this.notes = sortedByImportance;
     }
 
-    async checkAsFinished(id, checked) {
-        await fetch(`http://localhost:3000/notes/${id}`, {
+    checkAsFinished(id, checked) {
+        fetch(`http://localhost:3000/notes/${id}`, {
             method: 'PATCH',
             body: JSON.stringify({ finished: checked }),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },

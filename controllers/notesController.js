@@ -25,12 +25,10 @@ export class NotesController {
     async updateNote(req, res) {
         res.json(await noteStore.put(req.params.id, req.body))
     }
+    
     async partialUpdateNote(req, res) {
         res.json(await noteStore.patch(req.params.id, req.body))
     }
-    async errorPage(req, res) {
-        res.json((await noteStore.all()))
-    };
 }
 
 export const notesController = new NotesController();
