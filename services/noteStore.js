@@ -1,38 +1,37 @@
 import Datastore from 'nedb-promise'
 
-export class Note {
-    constructor(title, description, importance, duedate) {
-        this.title = title;
-        this.description = description;
-        this.importance = importance;
-        this.duedate = duedate;
-        this.created = new Date();
-        this.finished = this.finished;
-    }
-}
-
 export class NoteStore {
     constructor(db) {
-        this.db = db || new Datastore({filename: './data/orders.db', autoload: true});
+        this.db = db || new Datastore({ filename: './data/notes.db', autoload: true });
     }
 
-    async add(title, description, importance, duedate) {
-        let note = new Note(title, description, importance, duedate);
+    async add(note) {
         return await this.db.insert(note);
     }
 
     async delete(id) {
-        await this.db.update({_id: id}, {$set: {"state": "DELETED"}});
+        await this.db.remove({ _id: id });
         return await this.get(id);
     }
 
     async get(id) {
-        return await this.db.findOne({_id: id});
+        return await this.db.findOne({ _id: id });
+    }
+
+    async getFinished() {
+        return await this.db.find({ finished: true });
     }
 
     async all() {
-        console.log('here')
         return await this.db.find({});
+    }
+
+    async put(id, payload) {
+        return await this.db.update({ _id: id }, { $set: { title: payload.title, description: payload.description, importance: payload.importance, duedate: payload.duedate } });
+    }
+
+    async patch(id, payload) {
+        return await this.db.update({ _id: id }, {$set: { finished: payload.finished }});
     }
 }
 

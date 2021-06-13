@@ -124,10 +124,6 @@ button:hover {
     box-shadow: 0.25rem 0.25rem 0.6rem rgba(100, 100, 100, 0.2);
 }
 
-.todo-card.finished {
-    display: none;
-}
-
 .todo-due-date {
     width: 25%;
     margin-right: 2rem;

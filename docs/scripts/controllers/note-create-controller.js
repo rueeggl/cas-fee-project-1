@@ -3,7 +3,8 @@ import { noteService } from '../services/note-service.js';
 /**
  * Click Event Listeners
  */
-document.querySelector('#cancel-note-creation-btn').addEventListener('click', () => {
+document.querySelector('#cancel-note-creation-btn').addEventListener('click', (e) => {
+    e.preventDefault();
     noteService.cancelRequest();
 });
 
@@ -26,7 +27,7 @@ if (formElement) {
         const newNote = Object.fromEntries(formData);
         newNote.title = document.querySelector('#title').value;
         newNote.description = document.querySelector('#description').value;
-        newNote.importance = rating;
+        newNote.importance = rating || "1";
         newNote.created = moment().format().split('T')[0];
         newNote.duedate = document.querySelector('#duedate').value;
         newNote.finished = false;
