@@ -5,26 +5,28 @@
   "main": "docs/scripts/main.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "node ./source/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stylelint": "stylelint \"**/*.css\"",
     "w3c": "html-validator --file ./docs/index.html  --verbose",
     "eslint": "eslint \"**/*.js\"",
-    "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\"", 
-    "nodemon": "nodemon index.js"
+    "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\"",
+    "nodemon": "nodemon index.js",
+    "eslintfix": "eslint \"**/*.js\" --fix"
   },
-  "author": "Michael Gfeller",
+  "author": "Laura Rüegg",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^7.27.0",
+    "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.23.4",
     "html-validator-cli": "^7.0.1",
     "nodemon": "^2.0.7",
-    "stylelint": "^13.12.0",
-    "stylelint-config-standard": "^21.0.0"
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "nedb": "^1.8.0",

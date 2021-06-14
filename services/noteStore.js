@@ -1,4 +1,4 @@
-import Datastore from 'nedb-promise'
+import Datastore from 'nedb-promise';
 
 export class NoteStore {
     constructor(db) {
@@ -27,11 +27,20 @@ export class NoteStore {
     }
 
     async put(id, payload) {
-        return await this.db.update({ _id: id }, { $set: { title: payload.title, description: payload.description, importance: payload.importance, duedate: payload.duedate } });
+        return await this.db.update({ _id: id },
+            {
+                $set:
+                {
+                    title: payload.title,
+                    description: payload.description,
+                    importance: payload.importance,
+                    duedate: payload.duedate,
+                },
+            });
     }
 
     async patch(id, payload) {
-        return await this.db.update({ _id: id }, {$set: { finished: payload.finished }});
+        return await this.db.update({ _id: id }, { $set: { finished: payload.finished } });
     }
 }
 

@@ -6,14 +6,17 @@ import { noteService } from '../services/note-service.js';
 document.querySelector('#sort-by-create-date-btn').addEventListener('click', () => {
   noteService.sortByCreatedDate();
   renderNotes();
+  addEditDeleteListener();
 })
 document.querySelector('#sort-by-importance-btn').addEventListener('click', () => {
   noteService.sortByImportance();
   renderNotes();
+  addEditDeleteListener();
 })
 document.querySelector('#sort-by-duedate-btn').addEventListener('click', () => {
   noteService.sortByDueDate();
   renderNotes();
+  addEditDeleteListener();
 })
 document.querySelector('#show-finished-btn').addEventListener('click', () => {
   renderFinished();
@@ -103,16 +106,17 @@ function createNotesHTML(notes) {
 }
 
 function renderFinished() {
-  console.log('clicked')
+  let todoCard = document.querySelectorAll('.todo-card')
+  for (let i = 0; i < todoCard.length; i++) {
+    todoCard[i].classList.remove('finished')
+  }
 }
 
-await noteService.loadData();
-renderNotes();
-
-// this needs to go after all the rendering has happened and stays at the end
+function addEditDeleteListener() {
 document.querySelectorAll("[id^='edit-btn-']").forEach((item) => {
   item.addEventListener('click', async event => {
     let id = event.target.id.split('-')[2];
+    console.log(id)
 
     await noteService.getNote(id);
     const urlParams = new URLSearchParams(window.location.search);
@@ -128,3 +132,8 @@ document.querySelectorAll("[id^='delete-btn-']").forEach((item) => {
     await noteService.deleteNote(id);
   })
 })
+}
+
+await noteService.loadData();
+renderNotes();
+addEditDeleteListener()
