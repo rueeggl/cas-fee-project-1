@@ -23,7 +23,7 @@ document.querySelector('#cancel-note-creation-btn').addEventListener('click', ()
     noteService.cancelRequest();
 });
 document.querySelector('#save-note-creation-btn').addEventListener('click', async () => {
-    noteService.editNote(urlParams.id, noteEdited);
+    noteService.editNote(urlParams._id, noteEdited);
     await noteService.loadData();
     noteService.redirectToOverview();
 });

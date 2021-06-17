@@ -5,7 +5,7 @@ export class NoteService {
     }
 
     async loadData() {
-        const response = await (fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes'));
+        const response = await (fetch('http://localhost:3000/notes'));
         const data = await response.json();
         data.forEach((note) => this.notes.push(note));
     }
@@ -38,32 +38,32 @@ export class NoteService {
     }
 
     checkAsFinished(id, checked) {
-        fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
-            method: 'PUT',
+        fetch(`http://localhost:3000/notes/${id}`, {
+            method: 'PATCH',
             body: JSON.stringify({ finished: checked }),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         });
     }
 
     async getNote(id) {
-        const response = await (fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`));
+        const response = await (fetch(`http://localhost:3000/notes/${id}`));
         this.note = await response.json();
     }
 
     async deleteNote(id) {
         const alert = confirm('Are you sure you want to delete the note?');
         if (alert === true) {
-            fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json());
+            fetch(`http://localhost:3000/notes/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json());
         } else {
             this.redirectToOverview();
         }
     }
 
     createNote(newNote) {
-        fetch('https://60abe9f55a4de40017ccb2c6.mockapi.io/notes', {
+        fetch('http://localhost:3000/notes', {
             method: 'POST',
             body: JSON.stringify(newNote),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
@@ -71,7 +71,7 @@ export class NoteService {
     }
 
     editNote(id, payload) {
-        fetch(`https://60abe9f55a4de40017ccb2c6.mockapi.io/notes/${id}`, {
+        fetch(`http://localhost:3000/notes/${id}`, {
             method: 'PUT',
             body: JSON.stringify(payload),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
