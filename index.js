@@ -22,10 +22,6 @@ app.use(express.static(path.resolve('docs')));
 app.use(bodyParser.json());
 app.use('/notes', notesRoutes);
 
-app.all('*', (req, res) => {
-    res.status(404).sendFile(path.resolve('docs/error404.html'));
-});
-
 app.listen(port, () => {
     // eslint-disable-next-line no-console
     console.log(`Example app listening at http://localhost:${port}`);

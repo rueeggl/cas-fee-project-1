@@ -59,7 +59,7 @@ function renderNotes() {
 
 function createNotesHTML(notes) {
   return notes.map(note => `
-  <div class="todo-card">
+  <div class="todo-card ${note.finished ? "finished" : ""}">
           <div class="todo-due-date">
             <div class="todo-title">
               <p>Duedate: ${note.duedate}</p>
