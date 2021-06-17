@@ -5,27 +5,32 @@ import { noteService } from '../services/note-service.js';
  */
 document.querySelector('#sort-by-create-date-btn').addEventListener('click', () => {
   noteService.sortByCreatedDate();
-  renderNotes();
+  renderNotes(showFinished);
   addEditDeleteListener();
 })
 document.querySelector('#sort-by-importance-btn').addEventListener('click', () => {
   noteService.sortByImportance();
-  renderNotes();
+  renderNotes(showFinished);
   addEditDeleteListener();
 })
 document.querySelector('#sort-by-duedate-btn').addEventListener('click', () => {
   noteService.sortByDueDate();
-  renderNotes();
+  renderNotes(showFinished);
   addEditDeleteListener();
 })
 document.querySelector('#show-finished-btn').addEventListener('click', () => {
-  renderFinished();
+  toggleFinished();
 })
 
 /**
  * Note Template
  */
-function renderNotes() {
+ let showFinished = false;
+ function toggleFinished() {
+   showFinished = !showFinished
+   renderNotes(showFinished)
+ }
+function renderNotes(showFinished) {
   const notesListElement = document.querySelector('.content-wrapper');
   notesListElement ? notesListElement.innerHTML = "" : false;
   if (!noteService.notes.length) {
@@ -38,7 +43,8 @@ function renderNotes() {
     </div>`;
   }
   else if (notesListElement) {
-    notesListElement.innerHTML = createNotesHTML(noteService.notes);
+    console.log(showFinished)
+    showFinished ? notesListElement.innerHTML = createNotesHTML(noteService.notes) : notesListElement.innerHTML = createNotesHTML(noteService.notes.filter(note => !note.finished))
     let checkboxElement = document.querySelectorAll("[id^='checkbox-']")
     for (let i = 0; i < checkboxElement.length; i++) {
       checkboxElement[i].addEventListener('change', async (e) => {
@@ -58,6 +64,7 @@ function renderNotes() {
 }
 
 function createNotesHTML(notes) {
+  
   return notes.map(note => `
   <div class="todo-card ${note.finished ? "finished" : ""}">
           <div class="todo-due-date">
@@ -105,13 +112,6 @@ function createNotesHTML(notes) {
         </div>`).join('');
 }
 
-function renderFinished() {
-  let todoCard = document.querySelectorAll('.todo-card')
-  for (let i = 0; i < todoCard.length; i++) {
-    todoCard[i].classList.remove('finished')
-  }
-}
-
 function addEditDeleteListener() {
 document.querySelectorAll("[id^='edit-btn-']").forEach((item) => {
   item.addEventListener('click', async event => {
@@ -135,5 +135,5 @@ document.querySelectorAll("[id^='delete-btn-']").forEach((item) => {
 }
 
 await noteService.loadData();
-renderNotes();
+renderNotes(showFinished);
 addEditDeleteListener()
