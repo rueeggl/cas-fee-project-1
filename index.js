@@ -18,7 +18,7 @@ function allowCrossDomain(req, res, next) {
 app.use(allowCrossDomain);
 
 // serve html files from FE root folder
-app.use(express.static(path.resolve('docs')));
+app.use(express.static(path.resolve('public')));
 app.use(bodyParser.json());
 app.use('/notes', notesRoutes);
 

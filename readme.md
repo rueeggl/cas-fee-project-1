@@ -11,10 +11,10 @@ Getting Started
    - Erwarte Ausgabe: 1 Warnungen und «npm run all completed»
 4. Woche 1
    - HTML Gerüst erstellen für die Wireframes und Beginn CSS:
-      - /docs/index.html
-      - /docs/styles/index.css
+      - /public/index.html
+      - /public/styles/index.css
    - Webstorm:
-      - /docs/index.html "ausführen".
+      - /public/index.html "ausführen".
    - Visual Studio Code:
       - Live Server nutzen: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer    
 
