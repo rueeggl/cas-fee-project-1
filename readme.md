@@ -1,7 +1,5 @@
 Die Vorlage beinhaltet CSS/HTML/JS-Linter. Diese sind konfiguriert. 
 
-:star_struck: - Für eine Live Demo besuche: https://rueeggl.github.io/cas-fee-project-1/ - :star_struck:
-
 Getting Started
 1. Entzippen von der Vorlage.
 2. Installieren Sie die Dependencies der Vorlage
