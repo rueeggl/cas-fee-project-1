@@ -4,13 +4,6 @@ export class NoteService {
         this.note = {};
     }
 
-    async loadData() {
-        this.notes = [];
-        const response = await (fetch('/notes'));
-        const data = await response.json();
-        data.forEach((note) => this.notes.push(note));
-    }
-
     sortByDueDate() {
         const sortedByDueDate = [...this.notes].sort((a, b) => {
             const dateA = new Date(a.duedate);
@@ -38,13 +31,11 @@ export class NoteService {
         this.notes = sortedByImportance;
     }
 
-   checkAsFinished(id, checked) {
-        fetch(`/notes/${id}`, {
-            method: 'PATCH',
-            body: JSON.stringify({ finished: checked }),
-            headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-        });
-        this.loadData();
+    async loadData() {
+        this.notes = [];
+        const response = await (fetch('/notes'));
+        const data = await response.json();
+        data.forEach((note) => this.notes.push(note));
     }
 
     async getNote(id) {
@@ -78,6 +69,15 @@ export class NoteService {
             body: JSON.stringify(payload),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         });
+    }
+
+    checkAsFinished(id, checked) {
+        fetch(`/notes/${id}`, {
+            method: 'PATCH',
+            body: JSON.stringify({ finished: checked }),
+            headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+        });
+        this.loadData();
     }
 
     cancelRequest() {
