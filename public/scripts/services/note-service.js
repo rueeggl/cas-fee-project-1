@@ -44,7 +44,7 @@ export class NoteService {
             body: JSON.stringify({ finished: checked }),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         });
-        this.loadData()
+        this.loadData();
     }
 
     async getNote(id) {
