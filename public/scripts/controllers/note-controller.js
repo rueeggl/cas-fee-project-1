@@ -63,7 +63,6 @@ function renderNotes(showFinished) {
         let selectedCheckbox = document.getElementById(`${e.target.id}`)
         let isChecked = selectedCheckbox.checked
         if (isChecked) {
-          e.preventDefault();
           selectedCheckbox.closest('.todo-card').classList.add('finished')
           noteService.checkAsFinished(e.target.id.split('-')[1], true);
         } else {

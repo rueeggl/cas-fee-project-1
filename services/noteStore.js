@@ -18,10 +18,6 @@ export class NoteStore {
         return await this.db.findOne({ _id: id });
     }
 
-    async getFinished() {
-        return await this.db.find({ finished: true });
-    }
-
     async all() {
         return await this.db.find({});
     }
