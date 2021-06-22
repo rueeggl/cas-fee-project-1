@@ -138,6 +138,14 @@ button:hover {
     margin-top: 1rem;
 }
 
+.todo-title > .red {
+    color: red;
+}
+
+.todo-title > .orange {
+    color: orange;
+}
+
 .todo-title .bold {
     font-weight: 400;
 }

@@ -33,6 +33,13 @@ function toggleFinished() {
   showFinished = !showFinished;
   initialize(showFinished);
 }
+// render different colors according to the duedate
+function duedateDiff(noteDuedate) {
+  let today = moment(moment().format().split('T')[0]); 
+  let duedate = moment(noteDuedate)
+  let diff = duedate.diff(today, 'days')
+  return diff
+}
 
 // renders notes if they exist 
 function renderNotes(showFinished) {
@@ -72,8 +79,8 @@ function createNotesHTML(notes) {
   return notes.map(note => `
   <div class="todo-card ${note.finished ? "finished" : ""}">
           <div class="todo-due-date">
-            <div class="todo-title">
-              <p>Duedate: ${note.duedate} (${moment(note.duedate).fromNow()})</p>
+            <div class="todo-title" >
+              <p class="${duedateDiff(note.duedate) < 0 ? 'red': duedateDiff(note.duedate) < 4 ? 'orange': ''}">Duedate: ${note.duedate} (${moment(note.duedate).fromNow()})</p>
             </div>
             <div class="todo-title">
               <p>Created: ${note.created}</p>
@@ -147,5 +154,3 @@ function initialize(showFinished) {
 // load data and init
 await noteService.loadData();
 initialize(showFinished);
-
-console.log(moment(noteService.notes[0].duedate).fromNow())
