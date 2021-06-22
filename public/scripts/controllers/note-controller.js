@@ -1,6 +1,5 @@
 import { noteService } from '../services/note-service.js';
 
-
 /**
  * Click Event Listeners
  */
@@ -21,6 +20,7 @@ document.querySelector('#sort-by-duedate-btn').addEventListener('click', () => {
 })
 document.querySelector('#show-finished-btn').addEventListener('click', () => {
   toggleFinished();
+  toggleFinishedButton();
 })
 
 /**
@@ -29,10 +29,14 @@ document.querySelector('#show-finished-btn').addEventListener('click', () => {
 
 // finished notes toggle
 let showFinished = false;
+function toggleFinishedButton() {
+  showFinished ? document.querySelector('#show-finished-btn').innerHTML = 'Hide Finished' : document.querySelector('#show-finished-btn').innerHTML = 'Show Finished'
+}
 function toggleFinished() {
   showFinished = !showFinished;
   initialize(showFinished);
 }
+
 // render different colors according to the duedate
 function duedateDiff(noteDuedate) {
   let today = moment(moment().format().split('T')[0]); 
@@ -141,6 +145,7 @@ function addEditDeleteListener() {
     item.addEventListener('click', async event => {
       let id = event.target.id.split('-')[2];
       await noteService.deleteNote(id);
+      initialize(showFinished);
     })
   })
 }
