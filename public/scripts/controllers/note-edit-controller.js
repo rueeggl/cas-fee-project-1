@@ -1,12 +1,5 @@
 import { noteService } from '../services/note-service.js';
 
-const noteEdited = {
-    title: '',
-    description: '',
-    importance: '',
-    duedate: '',
-};
-
 /**
  * Prefill Form from URL Params
  */
@@ -15,6 +8,13 @@ document.querySelector('#title').setAttribute('value', urlParams.title);
 document.querySelector('textarea').value = urlParams.description;
 document.querySelector('#star' + `${urlParams.importance}`).setAttribute('checked', 'checked');
 document.querySelector('#duedate').setAttribute('value', urlParams.duedate);
+
+const noteEdited = {
+    title: urlParams.title,
+    description: urlParams.description,
+    importance: urlParams.importance,
+    duedate: urlParams.duedate,
+};
 
 /**
  * Click Event Listeners

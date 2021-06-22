@@ -1,26 +1,26 @@
 import { noteService } from '../services/note-service.js';
 
-
 /**
  * Click Event Listeners
  */
 document.querySelector('#sort-by-create-date-btn').addEventListener('click', () => {
   noteService.sortByCreatedDate();
-  renderNotes(showFinished);
+  initialize(showFinished);
   addEditDeleteListener();
 })
 document.querySelector('#sort-by-importance-btn').addEventListener('click', () => {
   noteService.sortByImportance();
-  renderNotes(showFinished);
+  initialize(showFinished);
   addEditDeleteListener();
 })
 document.querySelector('#sort-by-duedate-btn').addEventListener('click', () => {
   noteService.sortByDueDate();
-  renderNotes(showFinished);
+  initialize(showFinished);
   addEditDeleteListener();
 })
 document.querySelector('#show-finished-btn').addEventListener('click', () => {
   toggleFinished();
+  toggleFinishedButton();
 })
 
 /**
@@ -29,16 +29,20 @@ document.querySelector('#show-finished-btn').addEventListener('click', () => {
 
 // finished notes toggle
 let showFinished = false;
+function toggleFinishedButton() {
+  showFinished ? document.querySelector('#show-finished-btn').innerHTML = 'Hide Finished' : document.querySelector('#show-finished-btn').innerHTML = 'Show Finished'
+}
 function toggleFinished() {
   showFinished = !showFinished;
   initialize(showFinished);
 }
+
 // render different colors according to the duedate
 function duedateDiff(noteDuedate) {
   let today = moment(moment().format().split('T')[0]); 
-  let duedate = moment(noteDuedate)
-  let diff = duedate.diff(today, 'days')
-  return diff
+  let duedate = moment(noteDuedate);
+  let diff = duedate.diff(today, 'days');
+  return diff;
 }
 
 // renders notes if they exist 
@@ -141,6 +145,8 @@ function addEditDeleteListener() {
     item.addEventListener('click', async event => {
       let id = event.target.id.split('-')[2];
       await noteService.deleteNote(id);
+      await noteService.loadData();
+      initialize(showFinished);
     })
   })
 }

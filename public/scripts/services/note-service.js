@@ -5,7 +5,8 @@ export class NoteService {
     }
 
     async loadData() {
-        const response = await (fetch('http://localhost:3000/notes'));
+        this.notes = [];
+        const response = await (fetch('/notes'));
         const data = await response.json();
         data.forEach((note) => this.notes.push(note));
     }
@@ -37,33 +38,34 @@ export class NoteService {
         this.notes = sortedByImportance;
     }
 
-    checkAsFinished(id, checked) {
-        fetch(`http://localhost:3000/notes/${id}`, {
+   checkAsFinished(id, checked) {
+        fetch(`/notes/${id}`, {
             method: 'PATCH',
             body: JSON.stringify({ finished: checked }),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         });
+        this.loadData()
     }
 
     async getNote(id) {
-        const response = await (fetch(`http://localhost:3000/notes/${id}`));
+        const response = await (fetch(`/notes/${id}`));
         this.note = await response.json();
     }
 
     async deleteNote(id) {
         const alert = confirm('Are you sure you want to delete the note?');
         if (alert === true) {
-            fetch(`http://localhost:3000/notes/${id}`, {
+            fetch(`/notes/${id}`, {
                 method: 'DELETE',
             })
-                .then(res => res.json());
+            .then(res => res.json());
         } else {
             this.redirectToOverview();
         }
     }
 
     createNote(newNote) {
-        fetch('http://localhost:3000/notes', {
+        fetch('/notes', {
             method: 'POST',
             body: JSON.stringify(newNote),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
@@ -71,7 +73,7 @@ export class NoteService {
     }
 
     editNote(id, payload) {
-        fetch(`http://localhost:3000/notes/${id}`, {
+        fetch(`/notes/${id}`, {
             method: 'PUT',
             body: JSON.stringify(payload),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
@@ -83,12 +85,12 @@ export class NoteService {
         if (alert === true) {
             this.redirectToOverview();
         } else {
-            window.location.href = '/public/create.html';
+            window.location.href = '/create.html';
         }
     }
 
     redirectToOverview() {
-        window.location.href = '/public';
+        window.location.href = '/';
     }
 }
 
