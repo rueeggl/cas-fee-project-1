@@ -6,17 +6,14 @@ import { noteService } from '../services/note-service.js';
 document.querySelector('#sort-by-create-date-btn').addEventListener('click', () => {
   noteService.sortByCreatedDate();
   initialize(showFinished);
-  addEditDeleteListener();
 })
 document.querySelector('#sort-by-importance-btn').addEventListener('click', () => {
   noteService.sortByImportance();
   initialize(showFinished);
-  addEditDeleteListener();
 })
 document.querySelector('#sort-by-duedate-btn').addEventListener('click', () => {
   noteService.sortByDueDate();
   initialize(showFinished);
-  addEditDeleteListener();
 })
 document.querySelector('#show-finished-btn').addEventListener('click', () => {
   toggleFinished();
