@@ -5,17 +5,17 @@ import { noteService } from '../services/note-service.js';
  */
 document.querySelector('#sort-by-create-date-btn').addEventListener('click', () => {
   noteService.sortByCreatedDate();
-  renderNotes(showFinished);
+  initialize(showFinished);
   addEditDeleteListener();
 })
 document.querySelector('#sort-by-importance-btn').addEventListener('click', () => {
   noteService.sortByImportance();
-  renderNotes(showFinished);
+  initialize(showFinished);
   addEditDeleteListener();
 })
 document.querySelector('#sort-by-duedate-btn').addEventListener('click', () => {
   noteService.sortByDueDate();
-  renderNotes(showFinished);
+  initialize(showFinished);
   addEditDeleteListener();
 })
 document.querySelector('#show-finished-btn').addEventListener('click', () => {
@@ -40,9 +40,9 @@ function toggleFinished() {
 // render different colors according to the duedate
 function duedateDiff(noteDuedate) {
   let today = moment(moment().format().split('T')[0]); 
-  let duedate = moment(noteDuedate)
-  let diff = duedate.diff(today, 'days')
-  return diff
+  let duedate = moment(noteDuedate);
+  let diff = duedate.diff(today, 'days');
+  return diff;
 }
 
 // renders notes if they exist 
@@ -145,6 +145,7 @@ function addEditDeleteListener() {
     item.addEventListener('click', async event => {
       let id = event.target.id.split('-')[2];
       await noteService.deleteNote(id);
+      await noteService.loadData();
       initialize(showFinished);
     })
   })

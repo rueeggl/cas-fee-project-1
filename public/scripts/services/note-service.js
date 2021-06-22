@@ -5,7 +5,8 @@ export class NoteService {
     }
 
     async loadData() {
-        const response = await (fetch('http://localhost:3000/notes'));
+        this.notes = [];
+        const response = await (fetch('/notes'));
         const data = await response.json();
         data.forEach((note) => this.notes.push(note));
     }
@@ -43,6 +44,7 @@ export class NoteService {
             body: JSON.stringify({ finished: checked }),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         });
+        this.loadData()
     }
 
     async getNote(id) {
@@ -56,7 +58,7 @@ export class NoteService {
             fetch(`/notes/${id}`, {
                 method: 'DELETE',
             })
-                .then(res => res.json());
+            .then(res => res.json());
         } else {
             this.redirectToOverview();
         }
